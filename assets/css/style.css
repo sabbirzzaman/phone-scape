@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Smooch+Sans&display=swap');
 
+/* Root css */
+:root {
+    --primary-color: #3535de;
+    --background-color: #f3f3f4;
+    --white: rgb(255, 255, 255);
+}
+
+/* Global Layout CSS */
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +15,90 @@
 }
 
 body {
-    background-color: #fff;
+    background-color: var(--background-color);
     font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+button {
+    padding: 5px 15px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Search Area CSS */
+.site-logo {
+    margin-bottom: 10px;
+}
+
+.site-logo a {
+    font-family: 'Smooch Sans', sans-serif;
+    color: var(--primary-color);
+    font-size: 52px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.search-container {
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 48px 128px -24px rgb(0 0 0 / 8%);
+}
+
+/* Phones area css */
+.phone-container {
+    padding-top: 0;
+}
+
+.all-phones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.item {
+    background: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 48px 128px -24px rgb(0 0 0 / 8%);
+}
+
+.item img, .item h3, .item p {
+    margin-bottom: 5px;
 }
