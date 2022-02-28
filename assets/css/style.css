@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-    max-width: 1140px;
+    max-width: 992px;
     margin: 0 auto;
     padding: 50px 0;
 }
@@ -101,4 +101,35 @@ button {
 
 .item img, .item h3, .item p {
     margin-bottom: 5px;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 689px) and (max-width: 992px) {
+    .container {
+        max-width: 600px;
+    }
+
+    .search-container {
+        width: 60%;
+    }
+
+    .all-phones {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 688px) {
+    .container {
+        max-width: 325px;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .all-phones {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
