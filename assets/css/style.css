@@ -25,6 +25,10 @@ body {
     padding: 50px 0;
 }
 
+.no-scroll {
+    overflow-y: hidden;
+}
+
 input[type='text'] {
     width: 100%;
     padding: 5px 10px;
@@ -107,15 +111,20 @@ button {
 
 /* Details CSS */
 .details {
-    position: absolute;
-    top: 10vh;
+    position: fixed;
+    top: 0;
     background: #fff;
-    width: 100%;
-    height: 90vh;
-    border-radius: 20px 20px 0px 0px;;
-    box-shadow: 0 48px 128px -24px rgb(0 0 0 / 8%);
-    transform: translateY(90vh);
-    display: none;
+    width: 65%;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: all 0.3s ease-in-out;
+    overflow: scroll;
+}
+
+.detail-container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 50px 0;
 }
 
 .detail-close {
@@ -129,7 +138,7 @@ button {
     cursor: pointer;
 }
 
-.details-container {
+.phone-details {
     display: flex;
     gap: 50px;
 }
@@ -152,6 +161,18 @@ button {
     .all-phones {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .details {
+        width: 75%;
+    }
+
+    .detail-container {
+        max-width: 400px;
+    }
+
+    .phone-details {
+        flex-direction: column;
+    }
 }
 
 /* Extra small devices (phones, 688px and down) */
@@ -166,5 +187,18 @@ button {
 
     .all-phones {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .details {
+        width: 85%;
+    }
+
+    .detail-container {
+        max-width: 250px;
+    }
+
+    .phone-details {
+        flex-direction: column;
+        gap: 30px;
     }
 }

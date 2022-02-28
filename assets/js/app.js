@@ -11,6 +11,15 @@ const loadPhone = async () => {
     displayPhone(data);
 };
 
+// load phone details
+const loadDetails = async (slug) => {
+    const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    phoneDetails(data);
+}
+
 // Display phone data
 const displayPhone = (phones) => {
     // Select phone container
@@ -51,6 +60,7 @@ const displayPhone = (phones) => {
             // Set class and attribute
             phoneItem.classList.add('item');
             phoneImage.setAttribute('src', phone.image);
+            phoneDetailsBtn.setAttribute('onclick', `loadDetails('${phone.slug}')`)
 
             // Append element child
             phoneItem.appendChild(phoneImage);
@@ -62,3 +72,19 @@ const displayPhone = (phones) => {
         });
     }
 };
+
+const phoneDetails = (details) => {
+    const body = document.body;
+    const detailsContainer = document.getElementById('details');
+
+    body.classList.add('no-scroll')
+    detailsContainer.style.transform = 'translateX(-5%)';
+}
+
+document.getElementById('close-btn').addEventListener('click', () => {
+    const body = document.body;
+    const detailsContainer = document.getElementById('details');
+
+    body.classList.remove('no-scroll')
+    detailsContainer.style.transform = 'translateX(-100%)';
+})
