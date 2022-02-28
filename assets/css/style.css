@@ -96,7 +96,7 @@ button {
 }
 
 .item {
-    background: #fff;
+    background: var(--white);
     text-align: center;
     padding: 20px;
     border-radius: 10px;
@@ -113,7 +113,7 @@ button {
 .details {
     position: fixed;
     top: 0;
-    background: #fff;
+    background: var(--white);
     width: 65%;
     height: 100vh;
     transform: translateX(-100%);
