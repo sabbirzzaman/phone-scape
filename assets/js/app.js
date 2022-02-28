@@ -17,8 +17,8 @@ const loadDetails = async (slug) => {
     const res = await fetch(url);
     const data = await res.json();
 
-    phoneDetails(data);
-}
+    phoneDetails(data.data);
+};
 
 // Display phone data
 const displayPhone = (phones) => {
@@ -60,7 +60,10 @@ const displayPhone = (phones) => {
             // Set class and attribute
             phoneItem.classList.add('item');
             phoneImage.setAttribute('src', phone.image);
-            phoneDetailsBtn.setAttribute('onclick', `loadDetails('${phone.slug}')`)
+            phoneDetailsBtn.setAttribute(
+                'onclick',
+                `loadDetails('${phone.slug}')`
+            );
 
             // Append element child
             phoneItem.appendChild(phoneImage);
@@ -73,18 +76,49 @@ const displayPhone = (phones) => {
     }
 };
 
+// Detail bar toggle
+const detailBarToggle = (isOpen) => {
+    // Select elements
+    const body = document.body;
+    const detailsContainer = document.getElementById('details');
+
+    // Add class and style element
+    if (!isOpen) {
+        body.classList.remove('no-scroll');
+        detailsContainer.style.transform = 'translateX(-100%)';
+    } else {
+        body.classList.add('no-scroll');
+        detailsContainer.style.transform = 'translateX(-5%)';
+    }
+};
+
+// display phone details
 const phoneDetails = (details) => {
-    const body = document.body;
-    const detailsContainer = document.getElementById('details');
+    // Open details bar toggle
+    detailBarToggle(true);
 
-    body.classList.add('no-scroll')
-    detailsContainer.style.transform = 'translateX(-5%)';
-}
+    // Select elements
+    const detailImage = document.getElementById('detail-image');
+    const detailName = document.getElementById('name');
+    const detailRelease = document.getElementById('release-date');
+    const detailStorage = document.getElementById('storage');
+    const detailDisplay = document.getElementById('d-size');
+    const detailChipSet = document.getElementById('chip-set');
+    const detailMemory = document.getElementById('memory');
 
+    // Set attributes
+    detailImage.setAttribute('src', details.image)
+
+    // Set Inner text
+    detailName.innerText = details.name;
+    detailRelease.innerText = details.releaseDate;
+    detailStorage.innerText = details.mainFeatures.storage;
+    detailDisplay.innerText = details.mainFeatures.displaySize;
+    detailChipSet.innerText = details.mainFeatures.chipSet;
+    detailMemory.innerText = details.mainFeatures.memory;
+};
+
+// Close phone details bar
 document.getElementById('close-btn').addEventListener('click', () => {
-    const body = document.body;
-    const detailsContainer = document.getElementById('details');
-
-    body.classList.remove('no-scroll')
-    detailsContainer.style.transform = 'translateX(-100%)';
-})
+    detailBarToggle(false);
+});
