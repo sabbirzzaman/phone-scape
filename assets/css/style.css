@@ -105,6 +105,40 @@ button {
     margin-bottom: 5px;
 }
 
+/* Details CSS */
+.details {
+    position: absolute;
+    top: 10vh;
+    background: #fff;
+    width: 100%;
+    height: 90vh;
+    border-radius: 20px 20px 0px 0px;;
+    box-shadow: 0 48px 128px -24px rgb(0 0 0 / 8%);
+    transform: translateY(90vh);
+    display: none;
+}
+
+.detail-close {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.detail-close i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.details-container {
+    display: flex;
+    gap: 50px;
+}
+
+.phone-features h3,
+.phone-features p {
+    margin-bottom: 10px;
+}
+
 /* Medium devices (landscape tablets, 689px and up) */
 @media only screen and (min-width: 689px) and (max-width: 992px) {
     .container {
