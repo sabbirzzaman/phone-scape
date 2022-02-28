@@ -15,30 +15,50 @@ const loadPhone = async () => {
 const displayPhone = (phones) => {
     // Select phone container
     const phonesContainer = document.getElementById('all-phones');
+    const knowledge = document.getElementById('knowledge');
 
-    phones.data.forEach((phone) => {
-        searchInput.value = '';
+    // Search Keyword
+    const keyword = searchInput.value;
 
-        // Create Elements
-        const phoneItem = document.createElement('div');
-        const phoneImage = document.createElement('img');
-        const phoneTitle = document.createElement('h3');
-        const phoneBrand = document.createElement('p');
-        const phoneDetailsBtn = document.createElement('button');
+    // Clear search input and element content
+    searchInput.value = '';
+    phonesContainer.textContent = '';
 
-        // Set inner text
-        phoneDetailsBtn.innerText = 'Details';
+    if (keyword === '') {
+        // Empty search error
+        knowledge.innerText = 'Please input a search keyword';
+    } else if (!phones.status) {
+        // Not founded error
+        knowledge.innerText = 'Sorry, No phone founded';
+    } else {
+        // Add phone count
+        knowledge.innerText = `Showing search result for '${keyword}'`;
 
-        // Set class and attribute
-        phoneItem.classList.add('item');
-        phoneImage.setAttribute('src', phone.image);
+        // Display phone item
+        phones.data.forEach((phone) => {
+            // Create Elements
+            const phoneItem = document.createElement('div');
+            const phoneImage = document.createElement('img');
+            const phoneTitle = document.createElement('h3');
+            const phoneBrand = document.createElement('p');
+            const phoneDetailsBtn = document.createElement('button');
 
-        // Append element child
-        phoneItem.appendChild(phoneImage);
-        phoneItem.appendChild(phoneTitle);
-        phoneItem.appendChild(phoneBrand);
-        phoneItem.appendChild(phoneDetailsBtn);
+            // Set inner text
+            phoneDetailsBtn.innerText = 'Details';
+            phoneTitle.innerText = phone.phone_name;
+            phoneBrand.innerText = phone.brand;
 
-        phonesContainer.appendChild(phoneItem);
-    });
+            // Set class and attribute
+            phoneItem.classList.add('item');
+            phoneImage.setAttribute('src', phone.image);
+
+            // Append element child
+            phoneItem.appendChild(phoneImage);
+            phoneItem.appendChild(phoneTitle);
+            phoneItem.appendChild(phoneBrand);
+            phoneItem.appendChild(phoneDetailsBtn);
+
+            phonesContainer.appendChild(phoneItem);
+        });
+    }
 };
