@@ -103,7 +103,7 @@ const detailBarToggle = (isOpen) => {
         detailsContainer.style.transform = 'translateY(100%)';
     } else {
         body.classList.add('no-scroll');
-        detailsContainer.style.transform = 'translateY(10%)';
+        detailsContainer.style.transform = 'translateY(5%)';
     }
 };
 
@@ -143,6 +143,9 @@ const phoneDetails = (details) => {
     detailChipSet.innerText = details.mainFeatures.chipSet;
     detailMemory.innerText = details.mainFeatures.memory;
 
+    const allSensor = details.mainFeatures.sensors;
+    phoneSensor.innerText = `${allSensor.toString().replaceAll(',', ', ')}`;
+
     if (details.others) {
         wlan.innerText = details.others.WLAN;
         bluetooth.innerText = details.others.Bluetooth;
@@ -158,8 +161,6 @@ const phoneDetails = (details) => {
         radio.innerText = 'No Data Founded';
         usb.innerText = 'No Data Founded';
     }
-
-    phoneSensor.innerText = `${details.mainFeatures.sensors}`;
 };
 
 // Close phone details bar
