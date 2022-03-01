@@ -43,8 +43,12 @@ const displayPhone = (phones) => {
         // Add phone count
         knowledge.innerText = `Showing search result for '${keyword}'`;
 
+        console.log(phones.data.slice(0, 20));
+
+        const phoneDisplay = phones.data.slice(0, 20)
+
         // Display phone item
-        phones.data.forEach((phone) => {
+        phoneDisplay.forEach((phone) => {
             // Create Elements
             const phoneItem = document.createElement('div');
             const phoneImage = document.createElement('img');
@@ -85,10 +89,10 @@ const detailBarToggle = (isOpen) => {
     // Add class and style element
     if (!isOpen) {
         body.classList.remove('no-scroll');
-        detailsContainer.style.transform = 'translateX(-100%)';
+        detailsContainer.style.transform = 'translateY(100%)';
     } else {
         body.classList.add('no-scroll');
-        detailsContainer.style.transform = 'translateX(-5%)';
+        detailsContainer.style.transform = 'translateY(10%)';
     }
 };
 
@@ -96,6 +100,8 @@ const detailBarToggle = (isOpen) => {
 const phoneDetails = (details) => {
     // Open details bar toggle
     detailBarToggle(true);
+
+    console.log(details.releaseDate);
 
     // Select elements
     const detailImage = document.getElementById('detail-image');
@@ -105,17 +111,46 @@ const phoneDetails = (details) => {
     const detailDisplay = document.getElementById('d-size');
     const detailChipSet = document.getElementById('chip-set');
     const detailMemory = document.getElementById('memory');
+    const phoneSensor = document.getElementById('sensor');
+    const wlan = document.getElementById('wlan');
+    const bluetooth = document.getElementById('bluetooth');
+    const gps = document.getElementById('gps');
+    const nfc = document.getElementById('nfc');
+    const radio = document.getElementById('radio');
+    const usb = document.getElementById('usb');
 
     // Set attributes
-    detailImage.setAttribute('src', details.image)
+    detailImage.setAttribute('src', details.image);
 
     // Set Inner text
     detailName.innerText = details.name;
-    detailRelease.innerText = details.releaseDate;
+    if(!details.releaseDate) {
+        detailRelease.innerText = 'Release Date Not Available';
+    } else {
+        detailRelease.innerText = details.releaseDate;
+    }
     detailStorage.innerText = details.mainFeatures.storage;
     detailDisplay.innerText = details.mainFeatures.displaySize;
     detailChipSet.innerText = details.mainFeatures.chipSet;
     detailMemory.innerText = details.mainFeatures.memory;
+
+    if (details.others) {
+        wlan.innerText = details.others.WLAN;
+        bluetooth.innerText = details.others.Bluetooth;
+        gps.innerText = details.others.GPS;
+        nfc.innerText = details.others.NFC;
+        radio.innerText = details.others.Radio;
+        usb.innerText = details.others.USB;
+    } else {
+        wlan.innerText = 'Not Available';
+        bluetooth.innerText = 'Not Available';
+        gps.innerText = 'Not Available';
+        nfc.innerText = 'Not Available';
+        radio.innerText = 'Not Available';
+        usb.innerText = 'Not Available';
+    }
+
+    phoneSensor.innerText = `${details.mainFeatures.sensors}`;
 };
 
 // Close phone details bar
