@@ -1,8 +1,12 @@
 // Select global Items
 const searchInput = document.getElementById('search-input');
+const loadingSpinner = document.getElementById('loading-spinner');
 
 // Load phone data
 const loadPhone = async () => {
+    // Display spinner
+    loadingSpinner.style.display = 'block';
+
     const keyword = searchInput.value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${keyword}`;
     const res = await fetch(url);
@@ -25,10 +29,6 @@ const displayPhone = (phones) => {
     // Select phone container
     const phonesContainer = document.getElementById('all-phones');
     const knowledge = document.getElementById('knowledge');
-    const loadingSpinner = document.getElementById('loading-spinner');
-
-    // Display spinner
-    loadingSpinner.style.display = 'block';
 
     // Search Keyword
     const keyword = searchInput.value;
@@ -50,18 +50,16 @@ const displayPhone = (phones) => {
         // Not founded error
         knowledge.innerText = 'Sorry, No phone founded';
     } else {
-        // Hide spinner
-        loadingSpinner.style.display = 'none';
-
         // Add phone count
         knowledge.innerText = `Showing search result for '${keyword}'`;
 
-        console.log(phones.data.slice(0, 20));
-
-        const phoneDisplay = phones.data.slice(0, 20)
+        const phoneDisplay = phones.data.slice(0, 20);
 
         // Display phone item
         phoneDisplay.forEach((phone) => {
+            // Hide spinner
+            loadingSpinner.style.display = 'none';
+
             // Create Elements
             const phoneItem = document.createElement('div');
             const phoneImage = document.createElement('img');
@@ -114,8 +112,6 @@ const phoneDetails = (details) => {
     // Open details bar toggle
     detailBarToggle(true);
 
-    console.log(details.releaseDate);
-
     // Select elements
     const detailImage = document.getElementById('detail-image');
     const detailName = document.getElementById('name');
@@ -137,7 +133,7 @@ const phoneDetails = (details) => {
 
     // Set Inner text
     detailName.innerText = details.name;
-    if(!details.releaseDate) {
+    if (!details.releaseDate) {
         detailRelease.innerText = 'Release Date Not Available';
     } else {
         detailRelease.innerText = details.releaseDate;
