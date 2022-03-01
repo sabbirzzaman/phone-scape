@@ -25,6 +25,10 @@ const displayPhone = (phones) => {
     // Select phone container
     const phonesContainer = document.getElementById('all-phones');
     const knowledge = document.getElementById('knowledge');
+    const loadingSpinner = document.getElementById('loading-spinner');
+
+    // Display spinner
+    loadingSpinner.style.display = 'block';
 
     // Search Keyword
     const keyword = searchInput.value;
@@ -34,12 +38,21 @@ const displayPhone = (phones) => {
     phonesContainer.textContent = '';
 
     if (keyword === '') {
+        // Hide spinner
+        loadingSpinner.style.display = 'none';
+
         // Empty search error
         knowledge.innerText = 'Please input a search keyword';
     } else if (!phones.status) {
+        // Hide spinner
+        loadingSpinner.style.display = 'none';
+
         // Not founded error
         knowledge.innerText = 'Sorry, No phone founded';
     } else {
+        // Hide spinner
+        loadingSpinner.style.display = 'none';
+
         // Add phone count
         knowledge.innerText = `Showing search result for '${keyword}'`;
 
@@ -142,12 +155,12 @@ const phoneDetails = (details) => {
         radio.innerText = details.others.Radio;
         usb.innerText = details.others.USB;
     } else {
-        wlan.innerText = 'Not Available';
-        bluetooth.innerText = 'Not Available';
-        gps.innerText = 'Not Available';
-        nfc.innerText = 'Not Available';
-        radio.innerText = 'Not Available';
-        usb.innerText = 'Not Available';
+        wlan.innerText = 'No Data Founded';
+        bluetooth.innerText = 'No Data Founded';
+        gps.innerText = 'No Data Founded';
+        nfc.innerText = 'No Data Founded';
+        radio.innerText = 'No Data Founded';
+        usb.innerText = 'No Data Founded';
     }
 
     phoneSensor.innerText = `${details.mainFeatures.sensors}`;
